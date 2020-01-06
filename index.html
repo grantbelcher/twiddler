@@ -1,27 +1,68 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Twiddler</title>
+    <link rel="stylesheet" href="index.css">
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <script src="jquery.timeago.js"></script>
   </head>
   <body>
-    <script>
 
+
+
+
+
+
+    <script>
+ 
       $(document).ready(function(){
+
+
+
         var $body = $('body');
         $body.html('');
+        var title = 'Grants Twiddler'
+        var $title = $('<h1></h1>')
+        $title.text(title)
+        $title.appendTo($body)
+
+
+        
+
 
         var index = streams.home.length - 1;
         while(index >= 0){
+
+
+
+
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
           $tweet.text('@' + tweet.user + ': ' + tweet.message);
           $tweet.appendTo($body);
+
+          var time = $.timeago(tweet.created_at)
+          var $time = $('<t></t>')     
+          $time.text(time)
+          $time.appendTo($body)     
+
+
           index -= 1;
         }
 
       });
 
     </script>
+
+
+
+
+
   </body>
+
+
+
+
+
 </html>
