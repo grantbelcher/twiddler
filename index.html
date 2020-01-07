@@ -27,7 +27,28 @@
         $title.text(title)
         $title.appendTo($body)
 
+        function displayTime() {
+          var str = "";
 
+          var currentTime = new Date()
+          var hours = currentTime.getHours()
+           var minutes = currentTime.getMinutes()
+          var seconds = currentTime.getSeconds()
+
+          if (minutes < 10) {
+           minutes = "0" + minutes
+            }
+            if (seconds < 10) {
+        seconds = "0" + seconds
+            }
+            str += hours + ":" + minutes + ":" + seconds + " ";
+              if(hours > 11){
+               str += "PM"
+              } else {
+                str += "AM"
+               }
+                 return str;
+              }
         
 
 
@@ -35,21 +56,30 @@
         while(index >= 0){
 
 
-
-
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
           $tweet.text('@' + tweet.user + ': ' + tweet.message);
           $tweet.appendTo($body);
 
-          var time = $.timeago(tweet.created_at)
+          var time = displayTime()
           var $time = $('<t></t>')     
           $time.text(time)
-          $time.appendTo($body)     
+          $time.appendTo($body)    
+
+          var $break = $('<br /><br/>')
+          $break.appendTo($body) 
 
 
           index -= 1;
         }
+
+
+        var $button = $("<input class= 'btn' type=button value='Update Feed'")
+          $button.appendTo($body)
+
+
+
+
 
       });
 
