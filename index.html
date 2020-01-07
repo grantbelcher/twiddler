@@ -22,10 +22,17 @@
 
         var $body = $('body');
         $body.html('');
+
+
+
+
         var title = 'Grants Twiddler'
         var $title = $('<h1></h1>')
         $title.text(title)
         $title.appendTo($body)
+
+
+
 
         function displayTime() {
           var str = "";
@@ -50,6 +57,28 @@
                  return str;
               }
         
+        var $button = $('<button><button')
+        $button.text('update feed')
+        $button.appendTo($body);
+
+        $button.on('click', function(){
+          generateRandomTweet();
+          var newTweet = streams.home.pop();
+
+          var $newTweet = $('<div></div>');
+          $newTweet.text('@' + newTweet.user + ': ' + newTweet.message);
+          $newTweet.appendTo($body);
+
+          var time = displayTime()
+          var $time = $('<t></t>')     
+          $time.text(time)
+          $time.appendTo($body)    
+
+          var $break = $('<br /><br/>')
+          $break.appendTo($body) 
+
+
+        })
 
 
         var index = streams.home.length - 1;
@@ -72,10 +101,6 @@
 
           index -= 1;
         }
-
-
-        var $button = $("<input class= 'btn' type=button value='Update Feed'")
-          $button.appendTo($body)
 
 
 
