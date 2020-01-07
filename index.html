@@ -7,9 +7,11 @@
     <script src="data_generator.js"></script>
     <script src="jquery.timeago.js"></script>
   </head>
+
+
   <body>
 
-
+    <h1>'Grants Twiddler'</h1>
 
 
 
@@ -20,16 +22,48 @@
 
 
 
+
+
+
         var $body = $('body');
         $body.html('');
 
-
-
+          // var clickHandler = function() {
+          //    alert('You clicked on me!');
+          //     };
 
         var title = 'Grants Twiddler'
         var $title = $('<h1></h1>')
         $title.text(title)
         $title.appendTo($body)
+
+
+
+        var $button = $('<button><button')
+        $button.text('update feed')
+        $button.appendTo($body);
+  
+
+          // var $break = $('<br /><br/>')
+          // $break.prependTo($newTweets) 
+
+
+          var $userFeed = $('<h2></h2>')
+          $userFeed.text('userFeed')
+          $userFeed.appendTo($body)
+
+
+
+        // var newTweets = "<h4>'new tweets'<h4>"
+        var $newTweets = $('<h3></h3>')
+        // $newTweets.text(newTweets)
+        $newTweets.appendTo($body)
+
+
+        // var right = 'Right Twiddler'
+        // var $right = $('<h2></h2>')
+        // $right.text(right)
+        // $right.appendTo($body)
 
 
 
@@ -57,56 +91,157 @@
                  return str;
               }
         
-        var $button = $('<button><button')
-        $button.text('update feed')
-        $button.appendTo($body);
+          var $line = $('<hr/>')
+          $line.appendTo($body)
 
-        $button.on('click', function(){
-          generateRandomTweet();
-          var newTweet = streams.home.pop();
-
-          var $newTweet = $('<div></div>');
-          $newTweet.text('@' + newTweet.user + ': ' + newTweet.message);
-          $newTweet.appendTo($body);
-
-          var time = displayTime()
-          var $time = $('<t></t>')     
-          $time.text(time)
-          $time.appendTo($body)    
-
-          var $break = $('<br /><br/>')
-          $break.appendTo($body) 
-
-
-        })
-
-          var $break = $('<br /><br/>')
-          $break.appendTo($body) 
+          // var $break = $('<br /><br/>')
+          // $break.appendTo($body) 
 
 
         var index = streams.home.length - 1;
         while(index >= 0){
 
 
+
+
+
           var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
+          var $tweet = $('<div class= user></div>');
+
+          
+          // console.log(streams.users[profileName])
+          //creating a 'user variable'
+          // make each user a clickable element
+          // make function that displays elements on body aligrned to the right
+          // 
+          // add user variable to original tweets and newly created tweets
+
+
+          // var user = profileName;
+          // $user = $('<p></p>');
+          // $user.text('@' + user + ' ');
+
+         
+
           $tweet.text('@' + tweet.user + ': ' + tweet.message);
           $tweet.appendTo($body);
+
+          // $('div').on('click', clickHandler)
+
+
+          
+
+
+
+          
+          // $('div').on('click', function(){
+           
+            
+          //   var usersTweets = streams.users
+            
+          //   console.log(usersTweets)
+          //   var ind = usersTweets.length - 1
+
+
+          //   while(ind >= 0){
+
+
+
+          //     var tweed = usersTweets[ind]
+          //     var $tweed = $('<p></p>');
+          //     $tweed.text('@' + tweed.user + ': ' + tweed.message);
+          //     //TRY APPEND TO $RIGHT ELEMENT, ADD BORDER TO RIGHT HAND ELEMENT SO ITS DISPLAYED IN BOX
+          //     //ALERT TEXT; JSON.stringify(array of users tweets)
+          //     $tweed.appendTo($body)
+
+
+          //     ind -= 1;
+          //   }
+
+          //  })
 
           var time = displayTime()
           var $time = $('<t></t>')     
           $time.text(time)
           $time.appendTo($body)    
 
-          var $break = $('<br /><br/>')
-          $break.appendTo($body) 
-
+          // var $break = $('<br /><br/>')
+          // $break.appendTo($body) 
+          var $line = $('<hr/>')
+          $line.appendTo($body)
 
           index -= 1;
+        
+}
+          var counter = 0;
+          var originalLength = (streams.users[tweet.user].length - 1)
+          var start = originalLength
+        var clickHandler = function(){
+
+
+
+
+          if (counter < 1){
+
+          for (var i = 0; i < streams.users[tweet.user].length - 1; i++){
+          
+
+          var oldTweet = streams.users[tweet.user][i];
+          var $oldTweet = $('<div class= user></div>');
+          $oldTweet.text('@' + oldTweet.user + ': ' + oldTweet.message);
+          $oldTweet.appendTo($userFeed);
+
+          }
+
+          counter++
+
+         } else {
+            
+            var end = streams.users[tweet.user].length - 1
+
+            console.log(start, end)
+            for (var j = start; j < end; j++){
+              var oldTweet = streams.users[tweet.user][j];
+              var $oldTweet = $('<div class= user></div>');
+              $oldTweet.text('@' + oldTweet.user + ': ' + oldTweet.message);
+              $oldTweet.appendTo($userFeed);
+            }
+            start = end
+         }
+
         }
 
 
 
+          $('div').on('click', clickHandler)
+
+        $button.on('click', function(){
+          var time = displayTime()
+          var $time = $('<t></t>')     
+          $time.text(time)
+          $time.prependTo($newTweets)  
+          generateRandomTweet();
+          var newTweet = streams.home.pop();
+          var $user = $('<></>')
+          var $newTweet = $('<div></div>');
+          $newTweet.text('@' + newTweet.user + ': ' + newTweet.message);
+          $newTweet.prependTo($newTweets);
+          $newTweet.prependTo($newTweets)
+          var $line = $('<hr/>')
+          $line.prependTo($newTweets)
+          
+                  })
+
+        //   var $break = $('<br /><br/>')
+        //   $break.prependTo($newTweets) 
+        // var clickHandler = function(){
+        //   console.log(streams.users[tweet.user])
+        // }
+
+        //   $('div').on('click', clickHandler)
+
+
+        // })
 
 
       });
