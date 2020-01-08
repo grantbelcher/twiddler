@@ -39,6 +39,11 @@ a {
 /*    font: 300 16px/22px "Lato", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;*/
 }
 
+g:hover{
+  color: rebeccapurple;
+  cursor: pointer;
+}
+
 button{
 	border: 0;
     line-height: 2.5;
@@ -52,6 +57,7 @@ button{
 }
 
 button:hover {
-  background-color: #a59cff;
+  background-color: rebeccapurple;
+  cursor: pointer;
 }
 

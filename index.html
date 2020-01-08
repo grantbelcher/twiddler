@@ -43,12 +43,12 @@
 
 
 
-        var title = 'Grants Twiddler'
+        var title = "Grant's Awesome Social Media Website"
         var $title = $('<h1></h1>')
         $title.text(title)
         $title.appendTo($body)
 
-                var $rightHead = $('<h2></h2>')
+        var $rightHead = $('<h2></h2>')
         $rightHead.text('')
         $rightHead.appendTo($body);
 
@@ -243,6 +243,9 @@
 
         var clickHandler = function(){
 
+
+ 
+
           // var text1 = $('g').text()
           // console.log(text1)
           var currentUser = ($(this).text())
@@ -252,7 +255,7 @@
           
           console.log(storage[currentUser])
 
-          $('h2').text('@' + currentUser + "'s Feed")
+          $('h2').text('@' + currentUser + "'s Timeline")
 
           $userFeed.empty()
 
