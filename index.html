@@ -23,7 +23,7 @@
 
 
 
-        console.log(streams.users)
+
 
         var $body = $('body');
         $body.html('');
@@ -36,6 +36,11 @@
 
 
         var storage = {}
+
+       for (var key in streams.users){
+        storage[key] = 0
+       }
+
 
         var title = 'Grants Twiddler'
         var $title = $('<h1></h1>')
@@ -70,6 +75,35 @@
         // var $right = $('<h2></h2>')
         // $right.text(right)
         // $right.appendTo($body)
+
+
+
+        var getTime = function(timeObj){
+
+        // var time = (JSON.stringify(streams.home[0].created_at))
+        var time = JSON.stringify(timeObj)
+        var result;
+        var hr = Number(time.slice(12, 14)) - 8
+        var min = Number(time.slice(15, 17))
+        var sec = Number(time.slice(18, 20))
+
+        if (min < 10){
+          min = '0' + min
+        }
+
+        if (sec < 10){
+          sec = '0' + sec
+        }
+
+        result = hr + ':' + min + ':' + sec
+        if (hr < 12){
+          result += ' AM'
+        } else {
+          result += ' PM'
+        }
+
+        return result
+      }
 
 
 
@@ -203,30 +237,33 @@
           var currentUser = ($(this).text())
           currentUser = (currentUser.slice(1, currentUser.length - 1));
 
-          console.log(streams.users[currentUser])
+          // console.log(streams.users[currentUser])
           
+          console.log(storage[currentUser])
+          $userFeed.empty()
+
+          if (storage[currentUser] < 1){
 
 
-          if (counter < 1){
 
           for (var i = 0; i < streams.users[currentUser].length; i++){
           
-            // console.log(start)
+            console.log('first')
           var oldTweet = streams.users[currentUser][i];
           var $oldTweet = $('<div class= user></div>');
           $oldTweet.text('@' + oldTweet.user + ': ' + oldTweet.message);
           $oldTweet.appendTo($userFeed);
 
           }
-          start = streams.users[tweet.user].length
-          counter++
+          start = streams.users[currentUser].length
+          storage[currentUser]++
 
          } else {
 
             var end = streams.users[currentUser].length
             
-            // console.log(start, end)
-            for (var j = start; j < end; j++){
+            console.log('repeat')
+            for (var j = 0; j < streams.users[currentUser].length; j++){
               var oldTweet = streams.users[currentUser][j];
               var $oldTweet = $('<div class= user></div>');
               $oldTweet.text('@' + oldTweet.user + ': ' + oldTweet.message);
@@ -312,32 +349,7 @@
 
         })
 
-        var getTime = function(timeObj){
 
-        // var time = (JSON.stringify(streams.home[0].created_at))
-        var time = JSON.stringify(timeObj)
-        var result;
-        var hr = Number(time.slice(12, 14)) - 8
-        var min = Number(time.slice(15, 17))
-        var sec = Number(time.slice(18, 20))
-
-        if (min < 10){
-          min = '0' + min
-        }
-
-        if (sec < 10){
-          sec = '0' + sec
-        }
-
-        result = hr + ':' + min + ':' + sec
-        if (hr < 12){
-          result += ' AM'
-        } else {
-          result += ' PM'
-        }
-
-        return result
-      }
 
       // console.log(getTime(streams.home[0].created_at))
       
