@@ -173,14 +173,17 @@
           index -= 1;
         
 }
+
+
+// GENERATE USER FEED WHEN a <DIV> ELEMENT IS CLICKED
+
+
           var counter = 0;
           var originalLength = (streams.users[tweet.user].length - 1)
 
           var start
 
         var clickHandler = function(){
-
-
 
 
           if (counter < 1){
@@ -222,7 +225,34 @@
 
           $('div').on('click', clickHandler)
 
+
+
+
+        var firstNew = streams.home.length
+
+
         $button.on('click', function(){
+
+          console.log(firstNew)
+        
+
+        console.log(streams.home.slice(firstNew, streams.home.length))
+        // firstNew = streams.home.length - 1;
+
+        for (var k = firstNew; k < streams.home.length; k++){
+
+          var newTweet = streams.home[k]
+          var $newTweet = $('<div></div>');
+          $newTweet.text('@' + newTweet.user + ': ' + newTweet.message)
+          $newTweet.prependTo($newTweets);
+          var $break = $('<br /><br/>')
+          $break.prependTo($newTweets) 
+
+        }
+
+
+        firstNew = streams.home.length
+
 
 
 
@@ -233,16 +263,16 @@
           // generateRandomTweet();
 
           // for ()
-          var newTweet = streams.home.pop();
-          var $user = $('<></>')
-          var $newTweet = $('<div></div>');
-          $newTweet.text('@' + newTweet.user + ': ' + newTweet.message);
-          $newTweet.prependTo($newTweets);
-          $newTweet.prependTo($newTweets)
-          var $line = $('<hr/>')
-          $line.prependTo($newTweets)
+          // var newTweet = streams.home.pop();
+          // var $user = $('<></>')
+          // var $newTweet = $('<div></div>');
+          // $newTweet.text('@' + newTweet.user + ': ' + newTweet.message);
+          // $newTweet.prependTo($newTweets);
+          // $newTweet.prependTo($newTweets)
+          // var $line = $('<hr/>')
+          // $line.prependTo($newTweets)
           
-                  })
+          //         })
 
         //   var $break = $('<br /><br/>')
         //   $break.prependTo($newTweets) 
@@ -253,7 +283,7 @@
         //   $('div').on('click', clickHandler)
 
 
-        // })
+        })
 
 
       });
