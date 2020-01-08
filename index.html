@@ -223,11 +223,11 @@
 
          } else {
 
-            var end = streams.users[tweet.user].length
+            var end = streams.users[currentUser].length
             
             // console.log(start, end)
             for (var j = start; j < end; j++){
-              var oldTweet = streams.users[tweet.user][j];
+              var oldTweet = streams.users[currentUser][j];
               var $oldTweet = $('<div class= user></div>');
               $oldTweet.text('@' + oldTweet.user + ': ' + oldTweet.message);
               $oldTweet.appendTo($userFeed);
