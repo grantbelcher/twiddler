@@ -17,10 +17,20 @@ h3{
   font: 300 16px/22px "Lato", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-h2 {
+h2 {  color: #648880;
+  font-size: 20px;
+    line-height: 44px;
+    position: absolute;
+    right: 0px;
+    width: 300px;
+   /* border: 3px solid #648880*/;
+    padding: 0px  
+}
+
+a {
   color: #648880;
   font-size: 13px;
-    line-height: 44px;
+    line-height: 20px;
     position: absolute;
     right: 0px;
     width: 300px;

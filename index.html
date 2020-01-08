@@ -42,25 +42,36 @@
        }
 
 
+
         var title = 'Grants Twiddler'
         var $title = $('<h1></h1>')
         $title.text(title)
         $title.appendTo($body)
+
+                var $rightHead = $('<h2></h2>')
+        $rightHead.text('')
+        $rightHead.appendTo($body);
+
+
 
 
 
         var $button = $('<button><button')
         $button.text('update feed')
         $button.appendTo($body);
-            var $line = $('<hr/>')
+
+                    var $line = $('<hr/>')
           $line.appendTo($body)
+
+
+
 
           // var $break = $('<br /><br/>')
           // $break.prependTo($newTweets) 
 
 
-          var $userFeed = $('<h2></h2>')
-          $userFeed.text('userFeed')
+          var $userFeed = $('<a></a>')
+          $userFeed.text()
           $userFeed.appendTo($body)
 
 
@@ -240,19 +251,40 @@
           // console.log(streams.users[currentUser])
           
           console.log(storage[currentUser])
+
+          $('h2').text('@' + currentUser + "'s Feed")
+
           $userFeed.empty()
+
 
           if (storage[currentUser] < 1){
 
 
 
           for (var i = 0; i < streams.users[currentUser].length; i++){
+
+
           
-            console.log('first')
+          var newTime = getTime(streams.users[currentUser][i].created_at)
+          var $newTime = $('<t></t>')
+          $newTime.text(newTime)
+          $newTime.prependTo($userFeed)
+          
+
           var oldTweet = streams.users[currentUser][i];
           var $oldTweet = $('<div class= user></div>');
           $oldTweet.text('@' + oldTweet.user + ': ' + oldTweet.message);
-          $oldTweet.appendTo($userFeed);
+          $oldTweet.prependTo($userFeed);
+
+
+
+          // var nameFeed = '@' + oldTweet.user + ':'
+          // var $nameFeed = $('<g></g>');
+          // $nameFeed.text(nameFeed);
+          // $nameFeed.prependTo($userFeed)
+
+
+
 
           }
           start = streams.users[currentUser].length
@@ -262,12 +294,19 @@
 
             var end = streams.users[currentUser].length
             
-            console.log('repeat')
+
             for (var j = 0; j < streams.users[currentUser].length; j++){
+
+              var newTime = getTime(streams.users[currentUser][j].created_at)
+              var $newTime = $('<t></t>')
+              $newTime.text(newTime)
+              $newTime.prependTo($userFeed)
+
               var oldTweet = streams.users[currentUser][j];
               var $oldTweet = $('<div class= user></div>');
               $oldTweet.text('@' + oldTweet.user + ': ' + oldTweet.message);
-              $oldTweet.appendTo($userFeed);
+              $oldTweet.prependTo($userFeed);
+
             }
 
                 start = end 
