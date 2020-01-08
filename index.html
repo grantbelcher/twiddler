@@ -175,7 +175,9 @@
 }
           var counter = 0;
           var originalLength = (streams.users[tweet.user].length - 1)
-          var start = originalLength
+
+          var start
+
         var clickHandler = function(){
 
 
@@ -183,22 +185,22 @@
 
           if (counter < 1){
 
-          for (var i = 0; i < streams.users[tweet.user].length - 1; i++){
+          for (var i = 0; i < streams.users[tweet.user].length; i++){
           
-
+            console.log(start)
           var oldTweet = streams.users[tweet.user][i];
           var $oldTweet = $('<div class= user></div>');
           $oldTweet.text('@' + oldTweet.user + ': ' + oldTweet.message);
           $oldTweet.appendTo($userFeed);
 
           }
-
+          start = streams.users[tweet.user].length
           counter++
 
          } else {
-            
-            var end = streams.users[tweet.user].length - 1
 
+            var end = streams.users[tweet.user].length
+            
             console.log(start, end)
             for (var j = start; j < end; j++){
               var oldTweet = streams.users[tweet.user][j];
@@ -206,8 +208,13 @@
               $oldTweet.text('@' + oldTweet.user + ': ' + oldTweet.message);
               $oldTweet.appendTo($userFeed);
             }
-            start = end
+
+                start = end 
+
          }
+
+
+
 
         }
 
@@ -216,11 +223,16 @@
           $('div').on('click', clickHandler)
 
         $button.on('click', function(){
-          var time = displayTime()
-          var $time = $('<t></t>')     
-          $time.text(time)
-          $time.prependTo($newTweets)  
-          generateRandomTweet();
+
+
+
+          // var time = displayTime()
+          // var $time = $('<t></t>')     
+          // $time.text(time)
+          // $time.prependTo($newTweets)  
+          // generateRandomTweet();
+
+          // for ()
           var newTweet = streams.home.pop();
           var $user = $('<></>')
           var $newTweet = $('<div></div>');
