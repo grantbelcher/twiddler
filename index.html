@@ -42,7 +42,8 @@
         var $button = $('<button><button')
         $button.text('update feed')
         $button.appendTo($body);
-  
+            var $line = $('<hr/>')
+          $line.appendTo($body)
 
           // var $break = $('<br /><br/>')
           // $break.prependTo($newTweets) 
@@ -91,8 +92,8 @@
                  return str;
               }
         
-          var $line = $('<hr/>')
-          $line.appendTo($body)
+          // var $line = $('<hr/>')
+          // $line.appendTo($body)
 
           // var $break = $('<br /><br/>')
           // $break.appendTo($body) 
@@ -165,10 +166,10 @@
           $time.text(time)
           $time.appendTo($body)    
 
-          // var $break = $('<br /><br/>')
-          // $break.appendTo($body) 
-          var $line = $('<hr/>')
-          $line.appendTo($body)
+          var $break = $('<br /><br/>')
+          $break.appendTo($body) 
+          // var $line = $('<hr/>')
+          // $line.appendTo($body)
 
           index -= 1;
         
@@ -190,7 +191,7 @@
 
           for (var i = 0; i < streams.users[tweet.user].length; i++){
           
-            console.log(start)
+            // console.log(start)
           var oldTweet = streams.users[tweet.user][i];
           var $oldTweet = $('<div class= user></div>');
           $oldTweet.text('@' + oldTweet.user + ': ' + oldTweet.message);
@@ -204,7 +205,7 @@
 
             var end = streams.users[tweet.user].length
             
-            console.log(start, end)
+            // console.log(start, end)
             for (var j = start; j < end; j++){
               var oldTweet = streams.users[tweet.user][j];
               var $oldTweet = $('<div class= user></div>');
@@ -226,20 +227,26 @@
           $('div').on('click', clickHandler)
 
 
-
+// SHOWS NEW TWEETS WHEN UPDATE BUTTON IS PUSHED
 
         var firstNew = streams.home.length
 
 
         $button.on('click', function(){
 
-          console.log(firstNew)
+        //   console.log(firstNew)
         
 
-        console.log(streams.home.slice(firstNew, streams.home.length))
-        // firstNew = streams.home.length - 1;
+        // console.log(streams.home.slice(firstNew, streams.home.length))
 
         for (var k = firstNew; k < streams.home.length; k++){
+
+          // console.log(getTime(streams.home[k].created_at))
+
+          var newTime = getTime(streams.home[k].created_at)
+          var $newTime = $('<t></t>')
+          $newTime.text(newTime)
+          $newTime.prependTo($newTweets)
 
           var newTweet = streams.home[k]
           var $newTweet = $('<div></div>');
@@ -284,6 +291,37 @@
 
 
         })
+
+        var getTime = function(timeObj){
+
+        // var time = (JSON.stringify(streams.home[0].created_at))
+        var time = JSON.stringify(timeObj)
+        var result;
+        var hr = Number(time.slice(12, 14)) - 8
+        var min = Number(time.slice(15, 17))
+        var sec = Number(time.slice(18, 20))
+
+        if (min < 10){
+          min = '0' + min
+        }
+
+        if (sec < 10){
+          sec = '0' + sec
+        }
+
+        result = hr + ':' + min + ':' + sec
+        if (hr < 12){
+          result += ' AM'
+        } else {
+          result += ' PM'
+        }
+
+        return result
+      }
+
+      // console.log(getTime(streams.home[0].created_at))
+      
+
 
 
       });
