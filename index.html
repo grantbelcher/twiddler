@@ -23,7 +23,7 @@
 
 
 
-
+        console.log(streams.users)
 
         var $body = $('body');
         $body.html('');
@@ -31,6 +31,11 @@
           // var clickHandler = function() {
           //    alert('You clicked on me!');
           //     };
+
+
+
+
+        var storage = {}
 
         var title = 'Grants Twiddler'
         var $title = $('<h1></h1>')
@@ -107,6 +112,7 @@
 
 
           var tweet = streams.home[index];
+
           var $tweet = $('<div class= user></div>');
 
           
@@ -122,10 +128,16 @@
           // $user = $('<p></p>');
           // $user.text('@' + user + ' ');
 
-         
+          // var $userName = $('<' + tweet.user + '><' + tweet.user + '>')
+          $userName = $('<g></g>')
+          $userName.text('@' + tweet.user + ':')
+          $userName.appendTo($body)
 
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
+          $tweet.text(tweet.message);
           $tweet.appendTo($body);
+
+
+
 
           // $('div').on('click', clickHandler)
 
@@ -176,7 +188,7 @@
 }
 
 
-// GENERATE USER FEED WHEN a <DIV> ELEMENT IS CLICKED
+// GENERATE USER FEED WHEN a <g> ELEMENT IS CLICKED
 
 
           var counter = 0;
@@ -186,13 +198,21 @@
 
         var clickHandler = function(){
 
+          // var text1 = $('g').text()
+          // console.log(text1)
+          var currentUser = ($(this).text())
+          currentUser = (currentUser.slice(1, currentUser.length - 1));
+
+          console.log(streams.users[currentUser])
+          
+
 
           if (counter < 1){
 
-          for (var i = 0; i < streams.users[tweet.user].length; i++){
+          for (var i = 0; i < streams.users[currentUser].length; i++){
           
             // console.log(start)
-          var oldTweet = streams.users[tweet.user][i];
+          var oldTweet = streams.users[currentUser][i];
           var $oldTweet = $('<div class= user></div>');
           $oldTweet.text('@' + oldTweet.user + ': ' + oldTweet.message);
           $oldTweet.appendTo($userFeed);
@@ -224,7 +244,7 @@
 
 
 
-          $('div').on('click', clickHandler)
+          $('g').on('click', clickHandler)
 
 
 // SHOWS NEW TWEETS WHEN UPDATE BUTTON IS PUSHED
