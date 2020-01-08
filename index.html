@@ -306,9 +306,19 @@
           $newTime.prependTo($newTweets)
 
           var newTweet = streams.home[k]
+
+
+
+
           var $newTweet = $('<div></div>');
-          $newTweet.text('@' + newTweet.user + ': ' + newTweet.message)
+          $newTweet.text( newTweet.message)
           $newTweet.prependTo($newTweets);
+
+
+          $userName = $('<g></g>')
+          $userName.text('@' + newTweet.user + ':')
+          $userName.prependTo($newTweets)
+
           var $break = $('<br /><br/>')
           $break.prependTo($newTweets) 
 
@@ -317,7 +327,7 @@
 
         firstNew = streams.home.length
 
-
+        $('g').on('click', clickHandler)
 
 
           // var time = displayTime()
